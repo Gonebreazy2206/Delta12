@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Admin Panel</title>
+		<!-- Tailwind CDN for admin UI (keeps design consistent with site) -->
+		<script src="https://cdn.tailwindcss.com"></script>
+		<style>
+			:root{ --primary: #0a2540; --accent: #00b4d8; }
+		</style>
+	</head>
+	<body class="bg-gray-50 text-gray-800" style="color-scheme: light">
+		<nav id="topnav" class="bg-[color:var(--primary)] shadow">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="flex justify-between h-16 items-center">
+					<div class="flex items-center gap-4">
+						<img src="assets/cornels-Ayla.webp" alt="logo" class="h-10 w-10 rounded"/>
+						<div>
+							<div class="font-semibold text-white">Delta Pools — Admin</div>
+							<div class="text-xs text-gray-200">Manage site content</div>
+						</div>
+					</div>
+					<div>
+						<a href="index.html" class="text-sm text-white hover:underline">View site</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<main class="max-w-6xl mx-auto mt-10 p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+			<section class="lg:col-span-2 space-y-6">
+				<header>
+					<h1 class="text-2xl font-bold">Admin Panel</h1>
+					<p class="text-gray-600">Update site content. Changes save to <code class="bg-gray-100 px-1 rounded">assets/site-content.json</code>. Use uploads to add images to <code>assets/uploads/</code>.</p>
+				</header>
+
+				<div class="bg-white rounded shadow p-6">
+					<h2 class="text-lg font-semibold mb-3">Authentication</h2>
+					<p class="text-sm text-gray-600 mb-3">You will be prompted for the admin password when opening this page.</p>
+					<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+						<!-- hidden field holds password after successful prompt -->
+						<input id="adminPassword" type="hidden" />
+						<button id="logoutBtn" class="bg-white text-[color:var(--primary)] border px-3 py-2 rounded">Clear</button>
+						<div class="text-sm text-gray-200 self-center">This page requires the admin password to edit.</div>
+					</div>
+				</div>
+
+				<!-- Site settings removed - admin requested products-only editor -->
+
+				<div class="bg-white rounded shadow p-6">
+					<h2 class="text-lg font-semibold mb-3">Hero</h2>
+					<div class="grid gap-3">
+						<input id="heroTitle" type="text" placeholder="Hero title" class="border rounded px-3 py-2" />
+						<input id="heroSubtitle" type="text" placeholder="Hero subtitle" class="border rounded px-3 py-2" />
+						<div class="flex gap-3">
+							<input id="heroImage" type="text" placeholder="Hero image URL" class="border rounded px-3 py-2 flex-1" />
+							<input id="heroUpload" type="file" accept="image/*" class="border rounded px-3 py-2" />
+						</div>
+						<div class="text-sm text-gray-500">Tip: upload an image to add it to <code>assets/uploads/</code> and the field will populate with the URL.</div>
+					</div>
+				</div>
+
+				<div class="bg-white rounded shadow p-6">
+					<h2 class="text-lg font-semibold mb-3">Products</h2>
+					<div id="productsList" class="space-y-3 mb-4"></div>
+
+					<div class="border-t pt-4">
+						<h3 class="font-medium mb-2">Add / Edit product</h3>
+						<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+							<input id="pTitle" placeholder="Title" class="border rounded px-3 py-2" />
+							<input id="pImage" placeholder="Image URL" class="border rounded px-3 py-2" />
+							<input id="pUpload" type="file" accept="image/*" class="border rounded px-3 py-2" />
+							<textarea id="pDescription" placeholder="Description" rows="3" class="border rounded px-3 py-2 sm:col-span-2"></textarea>
+						</div>
+						<div class="flex gap-3 mt-3">
+							<button id="addProductBtn" class="bg-[color:var(--primary)] text-white px-4 py-2 rounded">Add/Update product</button>
+							<button id="clearProductBtn" class="bg-white border px-4 py-2 rounded text-[color:var(--primary)]">Clear</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="flex gap-3">
+					<button id="saveBtn" class="bg-[color:var(--primary)] text-white px-4 py-2 rounded hover:opacity-95">Save changes</button>
+					<button id="reloadBtn" class="bg-white border text-[color:var(--primary)] px-4 py-2 rounded">Reload</button>
+					<button id="downloadBtn" class="bg-white border px-4 py-2 rounded">Download JSON</button>
+					<div id="status" class="ml-4 text-sm self-center text-[color:var(--primary)]"></div>
+				</div>
+			</section>
+
+			<aside class="space-y-6">
+				<div class="bg-white rounded shadow p-4">
+					<h3 class="font-semibold mb-2">Preview</h3>
+					<div id="preview" class="rounded overflow-hidden border">
+						<!-- live preview will be injected here -->
+					</div>
+				</div>
+
+				<div class="bg-white rounded shadow p-4">
+					<h3 class="font-semibold mb-2">Help</h3>
+					<ul class="text-sm text-gray-600 space-y-2">
+						<li><strong>Save:</strong> Saves to <code>assets/site-content.json</code> and creates a backup.</li>
+						<li><strong>Uploads:</strong> Images saved to <code>assets/uploads/</code>.</li>
+						<li><strong>Security:</strong> This page is for local/dev use. Add proper auth before deploying.</li>
+					</ul>
+				</div>
+			</aside>
+		</main>
+
+		<script>
+			// Helpers
+			const statusEl = document.getElementById('status');
+
+			// State
+			let siteContent = { hero: {}, products: [] };
+			let editIndex = -1;
+
+			// Require admin password on page load
+			async function requireAuth(){
+				const expected = 'admin'; // per request
+				let attempts = 0;
+				while(attempts < 3){
+					const pw = prompt('Enter admin password:');
+					if(pw === null){
+						document.body.innerHTML = '<div class="p-6">Access cancelled.</div>';
+						return false;
+					}
+					if(pw === expected){
+						document.getElementById('adminPassword').value = pw;
+						return true;
+					}
+					attempts++;
+					alert('Incorrect password');
+				}
+				document.body.innerHTML = '<div class="p-6">Access denied.</div>';
+				return false;
+			}
+
+			async function uploadFile(file){
+				if(!file) return null;
+				const fd = new FormData();
+				fd.append('file', file);
+				try{
+					const r = await fetch('admin_upload.php', { method: 'POST', body: fd });
+					const text = await r.text();
+					let json = null;
+					try{ json = JSON.parse(text); }catch(e){ /* not JSON */ }
+					if(!r.ok){
+						// show server text or json.message
+						const msg = json?.message || text || ('HTTP ' + r.status);
+						statusEl.textContent = 'Upload failed: ' + msg;
+						return null;
+					}
+					if(json && json.success){
+						return json.url;
+					}else{
+						statusEl.textContent = 'Upload failed: ' + (json?.message || text || 'Unknown');
+					}
+				}catch(e){ console.error(e); statusEl.textContent = 'Upload error: ' + (e.message || e); }
+				return null;
+			}
+
+			function renderProducts(){
+				const container = document.getElementById('productsList');
+				container.innerHTML = '';
+				siteContent.products.forEach((p, i)=>{
+					const el = document.createElement('div');
+					el.className = 'border rounded p-3 flex items-start gap-3';
+					el.innerHTML = `
+						<img src="${p.image||'assets/pool-fallback.jpg'}" class="w-24 h-16 object-cover rounded" />
+						<div class="flex-1">
+							<div class="font-semibold">${p.title||'(no title)'}</div>
+							<div class="text-sm mt-2">${(p.description||'').slice(0,140)}</div>
+						</div>
+						<div class="flex flex-col gap-2">
+							<button data-index="${i}" class="editBtn bg-gray-100 px-2 py-1 rounded text-sm">Edit</button>
+							<button data-index="${i}" class="delBtn bg-red-100 text-red-700 px-2 py-1 rounded text-sm">Delete</button>
+						</div>
+					`;
+					container.appendChild(el);
+				});
+
+				// wire up buttons
+				container.querySelectorAll('.editBtn').forEach(b=>b.addEventListener('click', (ev)=>{
+					const i = Number(ev.currentTarget.dataset.index);
+					loadProductToForm(i);
+				}));
+				container.querySelectorAll('.delBtn').forEach(b=>b.addEventListener('click', (ev)=>{
+					const i = Number(ev.currentTarget.dataset.index);
+					if(confirm('Delete this product?')){ siteContent.products.splice(i,1); renderProducts(); renderPreview(); }
+				}));
+			}
+
+			function loadProductToForm(i){
+				const p = siteContent.products[i];
+				editIndex = i;
+				document.getElementById('pTitle').value = p.title || '';
+				document.getElementById('pImage').value = p.image || '';
+				document.getElementById('pDescription').value = p.description || '';
+			}
+
+			async function handleAddProduct(){
+				const title = document.getElementById('pTitle').value.trim();
+				if(!title){ alert('Title required'); return; }
+				let image = document.getElementById('pImage').value.trim();
+				const desc = document.getElementById('pDescription').value.trim();
+				const fileInput = document.getElementById('pUpload');
+				if(fileInput.files && fileInput.files[0]){
+					const url = await uploadFile(fileInput.files[0]);
+					if(url) image = url;
+				}
+				const product = { title, image, description: desc };
+				if(editIndex >= 0){ siteContent.products[editIndex] = product; editIndex = -1; }
+				else siteContent.products.push(product);
+				// clear form
+				document.getElementById('pTitle').value=''; document.getElementById('pImage').value=''; document.getElementById('pDescription').value=''; document.getElementById('pUpload').value='';
+				renderProducts(); renderPreview();
+			}
+
+			// Preview
+			function renderPreview(){
+				const el = document.getElementById('preview');
+				const hero = siteContent.hero || {};
+				const products = siteContent.products || [];
+					el.innerHTML = `
+						<div style='background:var(--primary); color:white; padding:1rem'>
+						<div class='text-lg font-bold'>Delta Pools</div>
+						<div class='text-sm'>${hero.title||''}</div>
+						<div class='text-xs'>${hero.subtitle||''}</div>
+					</div>
+					<div style='padding:0.5rem'>
+						${products.slice(0,3).map(p=>`<div style='display:flex;gap:8px;margin-bottom:8px'><img src='${p.image||"assets/pool-fallback.jpg"}' style='width:64px;height:48px;object-fit:cover'/> <div><div style='font-weight:600'>${p.title}</div></div></div>`).join('')}
+					</div>
+				`;
+			}
+
+			// Load/Save
+			async function loadContent(){
+				statusEl.textContent = 'Loading...';
+				try{
+					const r = await fetch('assets/site-content.json', {cache: 'no-store'});
+					if(!r.ok) throw new Error('Failed to load content');
+					const json = await r.json();
+					// ensure structure compatibility
+					siteContent = { hero: json.hero || {}, products: json.products || [] };
+					document.getElementById('heroTitle').value = siteContent.hero?.title || '';
+					document.getElementById('heroSubtitle').value = siteContent.hero?.subtitle || '';
+					document.getElementById('heroImage').value = siteContent.hero?.image || '';
+					renderProducts(); renderPreview();
+					statusEl.textContent = 'Loaded.';
+				}catch(e){ console.error(e); statusEl.textContent = 'Failed to load content.'; }
+			}
+
+			document.getElementById('addProductBtn').addEventListener('click', handleAddProduct);
+			document.getElementById('clearProductBtn').addEventListener('click', ()=>{ editIndex=-1; document.getElementById('pTitle').value=''; document.getElementById('pImage').value=''; document.getElementById('pDescription').value=''; document.getElementById('pUpload').value=''; });
+
+			document.getElementById('heroUpload').addEventListener('change', async (e)=>{
+				const f = e.target.files[0];
+				if(!f) return;
+				statusEl.textContent = 'Uploading...';
+				const url = await uploadFile(f);
+				if(url) document.getElementById('heroImage').value = url;
+				statusEl.textContent = 'Upload complete.';
+			});
+
+			document.getElementById('pUpload').addEventListener('change', ()=>{/* handled when adding product */});
+
+			document.getElementById('reloadBtn').addEventListener('click', loadContent);
+
+			document.getElementById('saveBtn').addEventListener('click', async ()=>{
+				const password = document.getElementById('adminPassword').value || '';
+				// only save hero and products as requested
+				const contentToSave = {
+					hero: { title: document.getElementById('heroTitle').value||'', subtitle: document.getElementById('heroSubtitle').value||'', image: document.getElementById('heroImage').value||'' },
+					products: siteContent.products || []
+				};
+
+				statusEl.textContent = 'Saving...';
+				try{
+					const r = await fetch('admin_update.php', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ password, content: contentToSave }) });
+					const res = await r.json();
+					if(res.success){ statusEl.textContent = 'Saved successfully.'; loadContent(); }
+					else statusEl.textContent = 'Save failed: ' + (res.message||'');
+				}catch(e){ console.error(e); statusEl.textContent = 'Save error.'; }
+			});
+
+			document.getElementById('downloadBtn').addEventListener('click', ()=>{
+				const blob = new Blob([JSON.stringify(siteContent, null, 2)], {type:'application/json'});
+				const url = URL.createObjectURL(blob);
+				const a = document.createElement('a'); a.href = url; a.download = 'site-content.json'; a.click(); URL.revokeObjectURL(url);
+			});
+
+			document.getElementById('logoutBtn').addEventListener('click', ()=>{ document.getElementById('adminPassword').value = ''; statusEl.textContent=''; });
+
+			// init: require auth first
+			(async ()=>{
+				const ok = await requireAuth();
+				if(!ok) return;
+				loadContent();
+			})();
+		</script>
+	</body>
+</html>

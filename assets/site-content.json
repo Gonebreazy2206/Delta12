@@ -1,0 +1,27 @@
+{
+  "hero": {
+    "title": "Welcome to Delta Pools",
+    "subtitle": "Quality pools, custom quotes, and trusted installation",
+    "image": "assets/pool-fallback.jpg"
+  },
+  "products": [
+    {
+      "title": "Basic Pool",
+      "price": "€5,499",
+      "description": "A simple, durable pool for small gardens.",
+      "image": "assets/images.jpeg"
+    },
+    {
+      "title": "Deluxe Pool",
+      "price": "€9,999",
+      "description": "Larger pool with upgraded finishing options.",
+      "image": "assets/images (1).jpeg"
+    }
+  ],
+  "site": {
+    "title": "Delta Pools",
+    "theme": {
+      "primary": "#4f46e5"
+    }
+  }
+}

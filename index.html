@@ -1,0 +1,647 @@
+<!-- <?php
+// V1.2 - 9-10-2025 2145    dd
+?> -->
+  
+
+<!DOCTYPE html>
+<html lang="nl" class="scroll-smooth">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5J7F88BKB7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5J7F88BKB7');
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DELTA12 – Premium platform voor zwembad & wellness offertes – zonder openbare prijzen. Configureer en ontvang een professionele offerte per e‑mail.">
+  <meta name="theme-color" content="#0a2540">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>DELTA12 • Premium Zwembad Offertes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Plus Jakarta Sans"','system-ui','sans-serif'] },
+          colors: {
+            primary: { DEFAULT:'#0a2540' },
+            accent: '#00b4d8',
+            ink: '#061a29'
+          },
+          boxShadow: {
+            glow: '0 0 0 3px rgba(0,180,216,0.35)',
+            card: '0 10px 30px -5px rgba(10,37,64,.35),0 4px 12px -2px rgba(0,0,0,.25)'
+          },
+          backgroundImage: {
+            hero: 'linear-gradient(135deg,#0a2540 0%,#003b5c 40%,#00b4d8 120%)',
+            mesh: 'radial-gradient(circle at 15% 20%,rgba(0,180,216,.25),transparent 60%),radial-gradient(circle at 85% 70%,rgba(255,255,255,.08),transparent 65%)'
+          },
+          animation: {
+            fade: 'fade .8s ease-out',
+            slideUp: 'slideUp .7s cubic-bezier(.16,.8,.24,1)',
+            pulseSoft: 'pulse 3.5s ease-in-out infinite'
+          },
+          keyframes: {
+            fade: { '0%':{opacity:0}, '100%':{opacity:1} },
+            slideUp: { '0%':{opacity:0,transform:'translateY(30px)'}, '100%':{opacity:1,transform:'translateY(0)'} }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html{scroll-padding-top:6rem;}
+    .glass{background:rgba(255,255,255,.06);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.1)}
+  .gradient-text{background:linear-gradient(90deg,#00b4d8,#a8ebff);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .btn-base{display:inline-flex;align-items:center;justify-content:center;font-weight:600;border-radius:.75rem;transition:.25s;white-space:nowrap}
+    .btn-primary{background:#00b4d8;color:#062230;box-shadow:0 4px 18px -4px #00b4d8aa;padding:.9rem 1.75rem}
+    .btn-primary:hover{background:#1fd4f3;transform:translateY(-2px)}
+    .btn-outline{border:1px solid #00b4d8;color:#00b4d8;padding:.85rem 1.5rem}
+    .btn-outline:hover{background:#00b4d8;color:#062230}
+    .btn-glass{padding:.9rem 1.5rem}
+    .feature-icon{background:linear-gradient(135deg,#00b4d8,#067aa4);}
+    [x-cloak]{display:none!important}
+    /* Scroll reveal animations */
+    .reveal{opacity:0;transform:translateY(38px);transition:opacity .9s cubic-bezier(.16,.8,.24,1),transform .9s cubic-bezier(.16,.8,.24,1);} 
+    .reveal.visible{opacity:1;transform:translateY(0);} 
+    .reveal.delay-1{transition-delay:.08s} .reveal.delay-2{transition-delay:.16s} .reveal.delay-3{transition-delay:.24s}
+    /* Dropdown solid styling override */
+    .dropdown-panel{background:#10324a;backdrop-filter:none;-webkit-backdrop-filter:none;border:1px solid rgba(255,255,255,.12);} 
+    /* Hero background image with dark overlay for readability */
+  .hero-image-layer{position:absolute;inset:0;background:linear-gradient(rgba(6,26,41,.72),rgba(6,26,41,.78)),url('assets/cornels-Ayla.webp') center/cover no-repeat;opacity:.88;pointer-events:none;}
+    @media (min-width:1024px){.hero-image-layer{opacity:.9;background-position:center center;}}
+  /* Spotlight styling for the 'Modulaire Upsells' card */
+  .upsell-spotlight{position:relative;transition:transform .3s ease, box-shadow .3s ease;}
+    .upsell-spotlight{box-shadow:0 0 0 1px rgba(0,180,216,.25), 0 10px 28px -8px rgba(0,180,216,.35), 0 0 24px rgba(0,180,216,.25);} 
+    .upsell-spotlight::after{content:"";position:absolute;inset:-2px;border-radius:1rem;pointer-events:none;filter:blur(10px);background:radial-gradient(60% 60% at 50% 50%, rgba(0,180,216,.25), transparent 70%);opacity:.7;animation:halo 4s ease-in-out infinite;}
+    @keyframes halo{0%,100%{opacity:.5;transform:scale(.98);}50%{opacity:.9;transform:scale(1.02);}}
+    .tilt-soft{animation:tilt 6s ease-in-out infinite;}
+    @keyframes tilt{0%,100%{transform:rotate(0deg);}50%{transform:rotate(4deg);}}
+    /* Global hover utilities and link underline */
+    .card-hover{transition:transform .25s ease, box-shadow .25s ease;}
+    .card-hover:hover{transform:translateY(-6px);box-shadow:0 12px 40px -10px rgba(10,37,64,.55),0 0 0 1.5px rgba(0,180,216,.28);} 
+    .link-underline{position:relative}
+    .link-underline::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:linear-gradient(90deg,rgba(0,180,216,.9),rgba(168,235,255,.9));transition:width .25s ease}
+    .link-underline:hover::after{width:100%}
+    /* Back to top button */
+    #backToTop{position:fixed;right:1.5rem;bottom:1.5rem;width:3rem;height:3rem;border-radius:9999px;display:flex;align-items:center;justify-content:center;background:#00b4d8;color:#062230;box-shadow:0 10px 24px -8px rgba(0,180,216,.6);opacity:0;transform:translateY(10px) scale(.96);pointer-events:none;transition:opacity .25s ease, transform .25s ease;z-index:60}
+    #backToTop:hover{background:#1fd4f3;transform:translateY(6px) scale(1)}
+    #backToTop.show{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+    /* Reduced motion preferences */
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none!important;transition:none!important}
+    }
+  </style>
+</head>
+<body class="font-sans bg-ink text-gray-100 relative overflow-x-hidden selection:bg-accent/40">
+  <!-- Mobile menu & dark overlay -->
+  <div id="overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition"></div>
+  <!-- Navigation -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-ink/60 backdrop-blur-md">
+    <div class="mx-auto max-w-7xl px-4">
+  <div class="h-24 flex items-center justify-between">
+        <a href="#home" class="flex items-center gap-2 group">
+          <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center ring-1 ring-accent/30 group-hover:ring-accent transition"><span class="text-accent font-bold text-lg">Δ12</span></div>
+          <span class="font-extrabold tracking-wide text-white text-xl">DELTA12</span>
+        </a>
+        <nav class="hidden lg:flex items-center gap-10 font-medium" role="navigation" aria-label="Hoofdmenu">
+          <a href="#catalog" class="link-underline hover:text-accent">Catalogus</a>
+          <a href="#configurator" class="link-underline hover:text-accent">Offerte</a>
+          <!-- Pakketten link verwijderd -->
+          <a href="#faq" class="link-underline hover:text-accent">FAQ</a>
+          <a href="#contact" class="link-underline hover:text-accent">Contact</a>
+          <!-- Admin link removed -->
+        </nav>
+        
+        <button id="burger" class="lg:hidden w-12 h-12 rounded-xl glass flex flex-col items-center justify-center gap-1.5" aria-label="Menu" onclick="toggleMenu()">
+          <span class="w-6 h-0.5 bg-white transition"></span>
+          <span class="w-6 h-0.5 bg-white transition"></span>
+          <span class="w-6 h-0.5 bg-white transition"></span>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="lg:hidden absolute top-20 inset-x-0 px-4 max-h-0 overflow-hidden transition-[max-height] duration-500">
+      <div class="glass rounded-2xl p-8 space-y-4 shadow-card">
+        <a href="#catalog" class="block py-2" onclick="toggleMenu()">Catalogus</a>
+  <a href="#configurator" class="block py-2" onclick="toggleMenu()">Offerte</a>
+  <!-- Mobiele pakketten link verwijderd -->
+        <a href="#faq" class="block py-2 link-underline" onclick="toggleMenu()">FAQ</a>
+  <a href="#contact" class="block py-2 link-underline" onclick="toggleMenu()">Neem contact op</a>
+  <!-- Mobile Admin link removed -->
+        <div class="pt-4 flex gap-3">
+                    <a href="https://wa.me/31628766303?text=Hoi%2C%20ik%20heb%20een%20vraag%20over%20DELTA12" target="_blank" rel="noopener" class="btn-base btn-outline flex-1" onclick="toggleMenu()">WhatsApp</a>
+          <a href="#configurator" class="btn-base btn-primary flex-1" onclick="toggleMenu()">Offerte</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="relative pt-44 pb-32 overflow-hidden z-0">
+    <div class="hero-image-layer"></div>
+  <div class="absolute inset-0 bg-mesh mix-blend-overlay opacity-40 pointer-events-none"></div>
+  <div class="relative z-10 mx-auto max-w-7xl px-4">
+      <div class="max-w-3xl animate-slideUp">
+  <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight gradient-text">Droomzwembad</h1>
+  <p class="text-xl lg:text-2xl text-gray-200/90 mt-2 mb-8 font-semibold">Slim – Snel – Transparant</p>
+  <p class="text-lg lg:text-xl text-gray-200/90 mb-10">Het eerste Nederlandse platform voor volledig configureerbare zwembad & wellness offertes met realtime prijsberekening, premium afwerking en directe offerte download.</p>
+  <div class="flex flex-wrap gap-4 items-center" style="pointer-events:auto">
+          <a href="#configurator" class="btn-base btn-primary text-lg">Start Offerte</a>
+          <a href="#catalog" class="btn-base btn-outline">Bekijk Modellen</a>
+          
+        </div>
+        <div class="mt-14 grid grid-cols-3 gap-6 max-w-xl text-sm">
+          <div class="glass rounded-xl p-4 text-center"><p class="font-bold text-accent text-lg">2-6 wkn</p><p class="text-gray-300/80">Installatietijd</p></div>
+          <div class="glass rounded-xl p-4 text-center"><p class="font-bold text-accent text-lg">+24%</p><p class="text-gray-300/80">ROI tuinwaarde</p></div>
+          <div class="glass rounded-xl p-4 text-center"><p class="font-bold text-accent text-lg"><span id="statQuotes">0</span>+</p><p class="text-gray-300/80">Offertes vandaag</p></div>
+        </div>
+      </div>
+    </div>
+  <div class="absolute -bottom-40 left-1/2 -translate-x-1/2 w-[120%] aspect-[3/1] bg-[radial-gradient(circle_at_center,rgba(0,180,216,.35),transparent_70%)] blur-3xl opacity-50 pointer-events-none"></div>
+  </section>
+
+  
+
+  <!-- Differentiators -->
+  <section class="relative py-24">
+    <div class="mx-auto max-w-7xl px-4">
+      <div class="grid md:grid-cols-3 gap-10">
+  <div class="glass rounded-2xl p-8 shadow-card card-hover">
+          <div class="w-14 h-14 feature-icon rounded-xl flex items-center justify-center text-white font-bold mb-5 shadow-inner">1</div>
+          <h3 class="text-xl font-semibold mb-3">Realtime Prijs Engine</h3>
+          <p class="text-gray-300 text-sm leading-relaxed">Elke keuze (afmeting, afwerking, techniek) past direct uw totaalprijs aan – zonder wachten op een medewerker.</p>
+        </div>
+  <div class="glass rounded-2xl p-8 shadow-card upsell-spotlight card-hover">
+          <div class="w-14 h-14 feature-icon rounded-xl flex items-center justify-center text-white font-bold mb-5 tilt-soft">2</div>
+          <h3 class="text-xl font-semibold mb-3">Modulaire Upsells</h3>
+          <p class="text-gray-300 text-sm leading-relaxed">Slimme aanbevelingen voor verlichting, warmte, afdekkingen & wellness modules verhogen conversie én marges.</p>
+        </div>
+  <div class="glass rounded-2xl p-8 shadow-card card-hover">
+          <div class="w-14 h-14 feature-icon rounded-xl flex items-center justify-center text-white font-bold mb-5">3</div>
+          <h3 class="text-xl font-semibold mb-3">Conversie Dashboard</h3>
+          <p class="text-gray-300 text-sm leading-relaxed">Track offerteverloop, gemiddelde prijs, addon adoptie & funnel dropout in één overzicht.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catalog -->
+  <section id="catalog" class="relative py-28 bg-gradient-to-b from-ink to-primary/90">
+    <div class="mx-auto max-w-7xl px-4">
+      <div class="flex items-end justify-between flex-wrap gap-6 mb-14">
+        <div>
+          <h2 class="text-4xl font-extrabold mb-2">Zwembad Catalogus</h2>
+          <p class="text-gray-300 max-w-xl">Kies een basismodel en ga direct naar de offerte configuratie.</p>
+        </div>
+        <div class="flex gap-3" id="productFilters">
+          <button class="btn-base btn-outline filter-active" data-filter="all" onclick="filterProducts('all', this)">Alle</button>
+          <button class="btn-base btn-glass glass" data-filter="inbouw" onclick="filterProducts('inbouw', this)">Inbouw</button>
+          <button class="btn-base btn-glass glass" data-filter="bovenbouw" onclick="filterProducts('bovenbouw', this)">Bovenbouw</button>
+          <button class="btn-base btn-glass glass" data-filter="wellness" onclick="filterProducts('wellness', this)">Wellness</button>
+        </div>
+      </div>
+      <div id="productGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10"></div>
+    </div>
+  </section>
+
+  <!-- Configurator / Quote -->
+  <section id="configurator" class="relative py-32 bg-[#0c304c] overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(0,180,216,.18),transparent_65%)]"></div>
+    <div class="relative mx-auto max-w-7xl px-4">
+      <div class="grid lg:grid-cols-2 gap-20 items-start">
+        <div class="space-y-8">
+          <h2 class="text-4xl font-extrabold leading-tight">Offerte Aanvraag</h2>
+          <p class="text-gray-300">Pas uw zwembad samenstelling aan en ontvang direct een indicatieve investering met professionele PDF offerte.</p>
+          <ul class="space-y-4 text-sm text-gray-300/90">
+            <li class="flex gap-3"><span class="text-accent">✔</span> Snelle configuratie (prijzen alleen in uw offerte)</li>
+            <li class="flex gap-3"><span class="text-accent">✔</span> Opslaan & per e-mail verzenden</li>
+            <li class="flex gap-3"><span class="text-accent">✔</span> Upsell aanbevelingen op basis van gekozen segment</li>
+          </ul>
+        </div>
+        <form id="quoteForm" class="glass rounded-3xl p-8 md:p-10 shadow-card">
+          <div class="mb-6">
+            <h3 class="text-xl font-semibold">Uw gegevens</h3>
+          </div>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-semibold mb-2" for="q_name">Naam</label>
+              <input id="q_name" type="text" class="w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 focus:outline-none focus:border-accent" required>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-2" for="q_email">E-mail</label>
+              <input id="q_email" type="email" class="w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 focus:outline-none focus:border-accent" required>
+            </div>
+          </div>
+          <div class="mt-6">
+            <label class="block text-sm font-semibold mb-3">Type zwembad</label>
+            <div id="typeChips" class="flex flex-wrap gap-3">
+              <button type="button" data-type="Inbouw" onclick="setType('Inbouw')" class="px-4 py-2 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 text-sm">Inbouw</button>
+              <button type="button" data-type="Bovenbouw" onclick="setType('Bovenbouw')" class="px-4 py-2 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 text-sm">Bovenbouw</button>
+              <button type="button" data-type="Wellness" onclick="setType('Wellness')" class="px-4 py-2 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 text-sm">Wellness</button>
+            </div>
+            <input type="hidden" id="q_type" value="Inbouw" />
+          </div>
+          <div class="mt-6">
+            <label class="block text-sm font-semibold mb-2" for="q_notes">Notities / wensen <span class="text-xs text-gray-400 font-normal">(optioneel)</span></label>
+            <textarea id="q_notes" rows="4" class="w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 focus:outline-none focus:border-accent"></textarea>
+          </div>
+          <div class="mt-8 flex flex-col items-center gap-4">
+            <p class="text-xs text-gray-400 text-center">Kies hoe u contact wilt opnemen.</p>
+            <div class="grid grid-cols-2 gap-3 w-full max-w-md">
+              <button type="submit" class="btn-base btn-outline text-base w-full justify-center">E‑mail versturen</button>
+              <button type="button" onclick="sendWhatsApp(event)" class="btn-base btn-primary text-base w-full justify-center">WhatsApp</button>
+            </div>
+          </div>
+          <p id="quoteMsg" class="mt-4 text-sm text-center text-green-400 hidden">Offerte aangevraagd! Controleer uw e‑mail.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing tier sectie verwijderd -->
+
+  <!-- FAQ -->
+  <section id="faq" class="py-28 relative bg-ink">
+    <div class="mx-auto max-w-4xl px-4">
+      <h2 class="text-4xl font-extrabold mb-14 text-center">Veelgestelde Vragen</h2>
+      <div class="space-y-4" id="faqList"></div>
+    </div>
+  </section>
+
+  <!-- Testimonials section removed as requested -->
+  <!-- Neem contact op -->
+  <section id="contact" class="py-28 relative bg-[#0a2235]">
+    <div class="absolute inset-0 bg-mesh opacity-40"></div>
+      <div class="relative mx-auto max-w-6xl px-4 grid lg:grid-cols-2 gap-16 items-start">
+      <div>
+        <h2 class="text-4xl font-extrabold mb-4">Neem contact op</h2>
+        <p class="text-gray-300 mb-4 max-w-md">Voor offertes, partnerschappen of vragen bereik je ons via onderstaande contactgegevens.</p>
+        <div class="glass rounded-2xl p-6 space-y-3 text-sm w-fit">
+          <p class="font-semibold text-accent">DELTA12</p>
+          <p>Postbus 225</p>
+          <p>1270 AE Huizen</p>
+          <p>T: <a href="tel:+31358200418" class="underline decoration-accent/50 hover:decoration-accent link-underline">+31 35 82 00 418</a></p>
+          <p>E: <a href="mailto:deltablaricum@gmail.com" class="underline decoration-accent/50 hover:decoration-accent link-underline">deltablaricum@gmail.com</a></p>
+        </div>
+        <div class="mt-4 text-sm text-gray-400">
+          <p><strong>KvK</strong> 68425554</p>
+          <p><strong>BTW</strong> NL001761628B71</p>
+          <p><strong>IBAN</strong> NL87 INGB 0007 5581 49</p>
+          <p><strong>BIC</strong> INGBNL2A</p>
+        </div>
+      </div>
+      <div class="glass rounded-3xl p-8 md:p-10 shadow-card space-y-6">
+        <p class="text-sm text-gray-300">Kies uw voorkeurskanaal.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <a href="https://wa.me/31628766303?text=Hoi%2C%20ik%20heb%20een%20vraag%20over%20DELTA12" target="_blank" rel="noopener" class="btn-base btn-primary w-full justify-center">WhatsApp</a>
+          <a href="mailto:deltablaricum@gmail.com?subject=Vraag%20over%20DELTA12" class="btn-base btn-outline w-full justify-center">E‑mail</a>
+          <a href="tel:+31358200418" class="btn-base btn-outline w-full justify-center">Bellen</a>
+        </div>
+        <p class="text-xs text-gray-400 text-center">Wij antwoorden doorgaans binnen 24 uur.</p>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <!-- Footer -->
+  <footer class="bg-ink border-t border-white/10 py-14 text-sm">
+    <div class="mx-auto max-w-7xl px-4 grid md:grid-cols-4 gap-14">
+      <div>
+        <h3 class="font-bold mb-4 text-accent">DELTA12</h3>
+        <p class="text-gray-400 leading-relaxed text-xs">Premium platform voor high-end zwembad en wellness offertes. Transparantie, snelheid en margeoptimalisatie.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4">Product</h4>
+        <ul class="space-y-2 text-gray-300/80">
+          <li><a href="#catalog" class="link-underline hover:text-accent">Catalogus</a></li>
+          <li><a href="#configurator" class="link-underline hover:text-accent">Configurator</a></li>
+          <li><a href="#faq" class="link-underline hover:text-accent">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4">Zakelijk</h4>
+        <ul class="space-y-2 text-gray-300/80">
+          <li><a href="#" class="link-underline hover:text-accent">Partners</a></li>
+          <li><a href="#" class="link-underline hover:text-accent">Reseller</a></li>
+          <li><a href="#" class="link-underline hover:text-accent">API</a></li>
+          <li><a href="#" class="link-underline hover:text-accent">White‑label</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4">Nieuwsbrief</h4>
+        <form onsubmit="newsletter(event)" class="space-y-3">
+          <input type="email" required placeholder="Uw e‑mail" class="w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 focus:outline-none focus:border-accent" />
+          <button class="btn-base btn-primary w-full">Aanmelden</button>
+          <p id="newsMsg" class="text-xs text-green-400 hidden">Ingeschreven! 🎉</p>
+        </form>
+      </div>
+    </div>
+  <div class="mt-16 text-center text-gray-500 text-xs">&copy; 2025 DELTA12. Alle rechten voorbehouden. • <a href="#" class="link-underline hover:text-accent">Privacy</a> • <a href="#" class="link-underline hover:text-accent">Voorwaarden</a></div>
+  </footer>
+
+  <!-- Auth Modal -->
+  <div id="auth-modal" class="fixed inset-0 hidden items-center justify-center p-6 z-[100]">
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeAuth()"></div>
+    <div class="relative w-full max-w-md glass rounded-3xl p-10 shadow-card animate-fade">
+      <button onclick="closeAuth()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl leading-none">&times;</button>
+      <h3 class="text-2xl font-bold mb-6">Account</h3>
+      <form onsubmit="authSubmit(event)" class="space-y-6">
+        <div>
+          <label class="block text-sm font-semibold mb-2" for="auth_email">E-mail</label>
+          <input id="auth_email" type="email" required class="w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 focus:outline-none focus:border-accent" />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold mb-2" for="auth_pwd">Wachtwoord</label>
+          <input id="auth_pwd" type="password" required class="w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 focus:outline-none focus:border-accent" />
+        </div>
+        <button class="btn-base btn-primary w-full">Inloggen</button>
+        <p id="authMsg" class="text-sm text-green-400 hidden text-center">Succesvol ingelogd!</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Winkelwagen verwijderd -->
+
+  <!-- Scripts -->
+  <script>
+    // Data: try to load products from admin-edited JSON (assets/site-content.json). If not available, fall back to hardcoded products.
+    let products = [];
+    (async function(){
+      try{
+        const resp = await fetch('/assets/site-content.json', {cache: 'no-store'});
+        if(resp.ok){
+          const json = await resp.json();
+          if(json && Array.isArray(json.products) && json.products.length>0){
+            products = json.products.map((p, i)=>({
+              id: p.id || ('p' + (i+1)),
+              name: p.title || p.name || ('Product ' + (i+1)),
+              type: p.type || 'inbouw',
+              imgSmall: p.image || p.img || 'zwembad/images.jpeg',
+              imgLarge: p.image || p.img || 'zwembad/images.jpeg',
+              imgFull: p.image || p.img || 'zwembad/images.jpeg',
+              desc: p.description || p.desc || ''
+            }));
+          }
+        }
+      }catch(e){ console.warn('Could not load site-content.json', e); }
+      // fallback if products still empty
+      if(!products || products.length===0){
+        products = [
+          {id:'p1', name:'Inbouwzwembad', type:'inbouw', imgSmall:'zwembad/images.jpeg', imgLarge:'zwembad/images.jpeg', imgFull:'zwembad/images.jpeg', alt:'Inbouwzwembad met moderne vlonder', desc:'Luxe maatwerk inbouwzwembad met strakke lijnen.'},
+          {id:'p2', name:'Bovenbouwzwembad', type:'bovenbouw', imgSmall:'zwembad/images (1).jpeg', imgLarge:'zwembad/images (1).jpeg', imgFull:'zwembad/images (1).jpeg', alt:'Bovenbouwmodel in een groene tuin', desc:'Comfortabel bovenbouwmodel met snelle installatie.'},
+          {id:'p3', name:'Wellness Combi', type:'wellness', imgSmall:'zwembad/images (2).jpeg', imgLarge:'zwembad/images (2).jpeg', imgFull:'zwembad/images (2).jpeg', alt:'Wellness pool met zitgedeelte', desc:'Combinatie van zwembad, relaxzone en wellness sfeer.'},
+          {id:'p4', name:'Compact City Pool', type:'inbouw', imgSmall:'zwembad/download.jpeg', imgLarge:'zwembad/download.jpeg', imgFull:'zwembad/download.jpeg', alt:'Compact stadszwembad in patio', desc:'Compact stadszwembad ideaal voor kleinere kavels.'},
+          {id:'p5', name:'Family Fun', type:'bovenbouw', imgSmall:'zwembad/download (1).jpeg', imgLarge:'zwembad/download (1).jpeg', imgFull:'zwembad/download (1).jpeg', alt:'Gezinszwembad met speelse elementen', desc:'Ruimte voor spelen & samen ontspannen.'},
+          {id:'p6', name:'Wellness Infinity', type:'wellness', imgSmall:'zwembad/download (2).jpeg', imgLarge:'zwembad/download (2).jpeg', imgFull:'zwembad/download (2).jpeg', alt:'Infinity pool met uitzicht', desc:'Infinity pool met premium afwerking en uitzicht.'},
+          // {id:'p7', name:'Lagoon Luxe', type:'inbouw', imgSmall:'zwembad/placeholder1.jpg', imgLarge:'zwembad/placeholder1.jpg', imgFull:'zwembad/placeholder1.jpg', alt:'Lagoon Luxe met led-verlichting', desc:'Ruimtelijk ontwerp met zachte lijnen en geïntegreerde led-verlichting.'},
+          // {id:'p8', name:'Compact Family', type:'bovenbouw', imgSmall:'zwembad/placeholder2.jpg', imgLarge:'zwembad/placeholder2.jpg', imgFull:'zwembad/placeholder2.jpg', alt:'Compact Family zwembad in tuin', desc:'Kostenefficiënt model voor kleinere tuinen met moderne afwerking.'},
+          // {id:'p9', name:'Infinity Horizon', type:'wellness', imgSmall:'zwembad/placeholder3.jpg', imgLarge:'zwembad/placeholder3.jpg', imgFull:'zwembad/placeholder3.jpg', alt:'Infinity Horizon met panoramisch zicht', desc:'Elegante infinity pool met panoramisch randontwerp.'},
+          // {id:'p10', name:'Lagoon Relax', type:'wellness', imgSmall:'zwembad/placeholder4.jpg', imgLarge:'zwembad/placeholder4.jpg', imgFull:'zwembad/placeholder4.jpg', alt:'Lagoon Relax wellness pool', desc:'Wellness-georiënteerde pool met vaste zitjes.'},
+          // {id:'p11', name:'Urban Compact', type:'inbouw', imgSmall:'zwembad/placeholder5.jpg', imgLarge:'zwembad/placeholder5.jpg', imgFull:'zwembad/placeholder5.jpg', alt:'Urban Compact in stadstuin', desc:'Klein, stijlvol zwembad voor stadstuinen.'},
+          // {id:'p12', name:'Family Play', type:'bovenbouw', imgSmall:'zwembad/placeholder6.jpg', imgLarge:'zwembad/placeholder6.jpg', imgFull:'zwembad/placeholder6.jpg', alt:'Family Play zwembad met speelruimte', desc:'Speels familiezwembad met extra diepte.'}
+        ];
+      }
+        // initial render after data prepared
+      renderProducts(); renderFAQ(); attachReveal();
+      filterProducts('all');
+    })();
+    const faq = [
+      {q:'Hoe lang duurt installatie?', a:'Gemiddeld 2–6 weken afhankelijk van graafwerk en techniek.'},
+      {q:'Leveren jullie onderhoud?', a:'Ja, we bieden onderhoudscontracten en waterbalans monitoring.'},
+      {q:'Is financiering mogelijk?', a:'Via partners is gespreide betaling mogelijk na kredietcheck.'},
+      {q:'Kan ik later upgraden?', a:'Modules zoals verlichting, jetstreams en automatisering zijn uitbreidbaar.'}
+    ];
+    const testimonials = [
+      {n:'Jan de Vries', t:'Configureren ging verrassend snel & duidelijk – binnen 10 minuten een PDF terug. Installatie-team werkte netjes.', r:5, a:'https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=200&q=60', role:'Particulier (Inbouw 7m)'},
+      {n:'Petra van Dijk', t:'Professioneel traject en support. Aanbevolen upgrades waren relevant zonder pushy te zijn. Waterkwaliteit top.', r:5, a:'https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=200&q=60', role:'Wellness Combi'},
+      {n:'Sander Hof', t:'Realtime prijsindicatie gaf vertrouwen in de transparantie. Offerte PDF zag er corporate en duidelijk uit.', r:4, a:'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=200&q=60', role:'Bovenbouw project'},
+      {n:'Lotte Meijer', t:'We dachten dat maatwerk maanden zou duren – binnen enkele weken operationeel. Nazorg is uitstekend geregeld.', r:5, a:'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=60', role:'Premium Inbouw'},
+      {n:'Arjan Kuipers', t:'Dashboard inzicht in addons hielp onze keuze. Jetstream later toegevoegd zonder gedoe.', r:4, a:'https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=200&q=60', role:'Upgrade traject'},
+      {n:'Sofie Jansen', t:'Communicatie strak, planning gehaald, kwaliteit boven verwachting. Aanrader.', r:5, a:'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=200&q=60', role:'Wellness Pro'}
+    ];
+  // (Cart functionaliteit verwijderd – offertegericht platform)
+
+    const productGrid = document.getElementById('productGrid');
+    const faqList = document.getElementById('faqList');
+    const testimonialGrid = document.getElementById('testimonialGrid');
+
+    
+
+    function renderProducts(list=products){
+      productGrid.innerHTML = list.map((p,i)=>`
+        <div class='glass rounded-2xl overflow-hidden flex flex-col shadow-card card-hover group reveal delay-${i%3} min-h-[360px]'>
+          <div class='relative'>
+            <picture>
+              <source media='(min-width:1024px)' srcset='${p.imgFull}' />
+              <source media='(min-width:640px)' srcset='${p.imgLarge}' />
+              <img loading='lazy' src='${p.imgSmall}' srcset='${p.imgSmall} 800w, ${p.imgLarge} 1600w, ${p.imgFull} 2400w' sizes='(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw' alt='${p.alt || p.name}' class='h-48 w-full object-cover group-hover:scale-105 transition duration-700 bg-gradient-to-br from-[#0a2540] to-[#003b5c]' onerror="this.onerror=null;this.classList.add('opacity-60');this.src='assets/pool-fallback.jpg';" />
+            </picture>
+            <span class='absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-semibold bg-accent text-ink shadow capitalize'>${p.type}</span>
+          </div>
+          <div class='p-6 flex flex-col gap-4 flex-1'>
+            <h3 class='font-semibold text-lg leading-tight break-words'>${p.name}</h3>
+            <p class='text-xs text-gray-300 leading-relaxed flex-1'>${p.desc}</p>
+            <div class='flex items-center justify-between'>
+              <span class='text-accent font-semibold text-xs'>Offerte op aanvraag</span>
+              <button class='btn-base btn-outline text-xs' onclick="configureFromProduct('${p.type}')">Configureer</button>
+            </div>
+          </div>
+        </div>`).join('');
+    }
+    function filterProducts(type, btn){
+      let list = products;
+      if(type !== 'all') list = products.filter(p=>p.type===type);
+      renderProducts(list);
+      attachReveal();
+      // Active styling toggle
+      if(btn){
+        document.querySelectorAll('#productFilters [data-filter]').forEach(b=>{
+          b.classList.remove('btn-primary','filter-active');
+          // revert base look
+          if(b.dataset.filter==='all') b.classList.add('btn-outline'); else b.classList.add('glass');
+        });
+        // Clean conflicting classes
+        btn.classList.remove('glass','btn-outline');
+        btn.classList.add('btn-primary','filter-active');
+      }
+    }
+
+    function renderFAQ(){
+      faqList.innerHTML = faq.map((f,i)=>`<div class='glass rounded-xl overflow-hidden'>
+          <button class='w-full flex justify-between items-center px-6 py-4 text-left font-semibold hover:bg-white/5 transition' onclick='toggleFaq(${i})'>${f.q}<span id='faqIcon${i}' class='text-accent'>+</span></button>
+          <div id='faqAnswer${i}' class='max-h-0 overflow-hidden transition-all duration-500 ease-out px-6 pt-0 pb-0 text-sm leading-relaxed text-gray-300'>
+            <div class='py-4 pr-2'>${f.a}</div>
+          </div>
+        </div>`).join('');
+    }
+    function toggleFaq(i){
+      const box = document.getElementById('faqAnswer'+i); const icon = document.getElementById('faqIcon'+i);
+      if(box.style.maxHeight){
+        box.style.maxHeight = null; icon.textContent='+';
+      } else {
+        // Close others
+        document.querySelectorAll('[id^=faqAnswer]').forEach(el=>{ if(el!==box){ el.style.maxHeight=null; const idx=el.id.replace('faqAnswer',''); const ic=document.getElementById('faqIcon'+idx); if(ic) ic.textContent='+'; }});
+        box.style.maxHeight = box.scrollHeight+'px'; icon.textContent='–';
+      }
+    }
+
+    // Testimonials removed - helper removed to simplify scripts
+    function renderStars(rating){
+      return Array.from({length:5}).map((_,i)=>`<svg class='w-4 h-4 ${i<rating?'text-accent':'text-gray-600'}' fill='currentColor' viewBox='0 0 20 20'><path d='M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.802 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118L10.95 13.74a1 1 0 00-1.175 0l-2.434 1.732c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L3.706 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z'/></svg>`).join('');
+    }
+    function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+    // Prijsberekening verwijderd (geen publieke prijzen)
+    function updateQuote(){}
+
+    // Offerte formulier submit (async via quote-submit.php)
+    document.getElementById('quoteForm').addEventListener('submit', async e=>{
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type=submit]');
+      const msg = document.getElementById('quoteMsg');
+      msg.classList.remove('hidden');
+      msg.classList.remove('text-green-400','text-red-400');
+      msg.classList.add('text-accent');
+      msg.textContent = 'Versturen…';
+      btn.disabled = true; btn.classList.add('opacity-60','pointer-events-none');
+      const payload = {
+        name: document.getElementById('q_name').value.trim(),
+        email: document.getElementById('q_email').value.trim(),
+        type: document.getElementById('q_type').value,
+        notes: document.getElementById('q_notes').value.trim()
+      };
+      try {
+        const res = await fetch('quote-submit.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+        const data = await res.json().catch(()=>({success:false,error:'Onbekend antwoord'}));
+        if(data.success){
+          msg.textContent = 'Offerte aangevraagd! Controleer uw e‑mail (kan in spam belanden).';
+          msg.classList.remove('text-accent');
+          msg.classList.add('text-green-400');
+          e.target.reset();
+          updateQuote();
+        } else {
+          msg.textContent = 'Fout bij verzenden: '+ (data.error||'Probeer later opnieuw');
+          msg.classList.remove('text-accent');
+          msg.classList.add('text-red-400');
+        }
+      } catch(err){
+        msg.textContent = 'Netwerkfout – probeer opnieuw.';
+        msg.classList.remove('text-accent');
+        msg.classList.add('text-red-400');
+      } finally {
+        btn.disabled = false; btn.classList.remove('opacity-60','pointer-events-none');
+        setTimeout(()=>{ msg.classList.add('hidden'); }, 8000);
+      }
+    });
+
+    // configureFromProduct: set type & scroll to configurator
+    function configureFromProduct(type){
+      setType(capitalizeType(type));
+      scrollToQuote();
+      highlightConfigurator();
+    }
+    function capitalizeType(t){
+      switch(t){
+        case 'inbouw': return 'Inbouw';
+        case 'bovenbouw': return 'Bovenbouw';
+        case 'wellness': return 'Wellness';
+        default: return t;
+      }
+    }
+    function highlightConfigurator(){
+      const block = document.getElementById('quoteForm');
+      if(!block) return;
+      block.classList.add('ring-2','ring-accent','ring-offset-2','ring-offset-ink');
+      setTimeout(()=>block.classList.remove('ring-2','ring-accent','ring-offset-2','ring-offset-ink'),2000);
+    }
+
+    // UI toggles
+    function toggleMenu(){ const m=document.getElementById('mobileMenu'); const o=document.getElementById('overlay'); if(m.style.maxHeight){ m.style.maxHeight=null; o.classList.add('opacity-0','pointer-events-none'); } else { m.style.maxHeight= m.scrollHeight+'px'; o.classList.remove('opacity-0','pointer-events-none'); } }
+    function openAuth(){ document.getElementById('auth-modal').classList.remove('hidden'); }
+    function closeAuth(){ document.getElementById('auth-modal').classList.add('hidden'); }
+    function authSubmit(e){ e.preventDefault(); document.getElementById('authMsg').classList.remove('hidden'); setTimeout(()=>{closeAuth(); document.getElementById('authMsg').classList.add('hidden');},1500); }
+    function contactSubmit(e){ e.preventDefault(); document.getElementById('contactMsg').classList.remove('hidden'); setTimeout(()=>document.getElementById('contactMsg').classList.add('hidden'),4000); }
+    function newsletter(e){ e.preventDefault(); document.getElementById('newsMsg').classList.remove('hidden'); setTimeout(()=>document.getElementById('newsMsg').classList.add('hidden'),4000); }
+    function selectTier(t){ setType(t); scrollToQuote(); }
+    // Custom dropdown handlers for type selection
+  function toggleTypeMenu(){ /* dropdown removed; no-op */ }
+    function setType(t){
+      document.getElementById('q_type').value = t;
+      // highlight chips
+      const chips = document.querySelectorAll('#typeChips [data-type]');
+      chips.forEach(ch=>{
+        if(ch.getAttribute('data-type')===t){
+          ch.classList.add('bg-accent','text-ink','border-accent');
+          ch.classList.remove('bg-white/5','hover:bg-white/10');
+        } else {
+          ch.classList.remove('bg-accent','text-ink','border-accent');
+          ch.classList.add('bg-white/5');
+        }
+      });
+      updateQuote();
+    }
+    // Remove old dropdown outside-click logic
+    // Initialize default chip selection
+    setType('Inbouw');
+
+    // Build and open WhatsApp message with form details
+    function sendWhatsApp(e){
+      e.preventDefault();
+      const name = (document.getElementById('q_name')?.value || '').trim();
+      const email = (document.getElementById('q_email')?.value || '').trim();
+      const type = (document.getElementById('q_type')?.value || '').trim();
+      const notes = (document.getElementById('q_notes')?.value || '').trim();
+      const lines = [
+        'Hoi, ik wil graag contact over een zwembad offerte.',
+        name ? `Naam: ${name}` : null, 
+        email ? `E-mail: ${email}` : null,
+        type ? `Type: ${type}` : null,
+        notes ? `Notities: ${notes}` : null,
+        'Verzonden via DELTA12.nl'
+      ].filter(Boolean);
+      const msg = encodeURIComponent(lines.join('\n'));
+      const phone = '31628766303'; // +31 6 28766303 without leading + and keeping country code
+      const url = `https://wa.me/${phone}?text=${msg}`;
+      window.open(url, '_blank', 'noopener');
+    }
+
+    // IntersectionObserver for reveal animations
+    const observer = new IntersectionObserver(entries=>{
+      entries.forEach(ent=>{ if(ent.isIntersecting){ ent.target.classList.add('visible'); observer.unobserve(ent.target);} });
+    }, {threshold:0.15});
+    function attachReveal(){ document.querySelectorAll('.reveal:not(.visible)').forEach(el=>observer.observe(el)); }
+    function scrollToQuote(){ document.getElementById('configurator').scrollIntoView({behavior:'smooth'}); }
+    
+
+    // Render initial dynamic content
+    renderProducts(); renderFAQ(); attachReveal();
+  // Ensure initial filter state consistent
+  filterProducts('all');
+    // Simple stat animation
+    let q=0; const qi=setInterval(()=>{q++; document.getElementById('statQuotes').textContent=q; if(q>=48) clearInterval(qi);},40);
+    
+  </script>
+  <!-- Back to top button -->
+  <button id="backToTop" aria-label="Terug naar boven" title="Naar boven" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M12 4l-7 7h4v7h6v-7h4z"/></svg>
+  </button>
+  <script>
+    // Toggle back-to-top visibility on scroll
+    (function(){
+      const btt = document.getElementById('backToTop');
+      if(!btt) return;
+      const onScroll = ()=>{ if(window.scrollY>420){ btt.classList.add('show'); } else { btt.classList.remove('show'); } };
+      window.addEventListener('scroll', onScroll, {passive:true});
+      onScroll();
+    })();
+  </script>
+</body>
+</html>
